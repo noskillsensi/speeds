@@ -76,87 +76,135 @@
             </div>
         </section>
 
-        <section id="interactive-panel" class="py-16 px-4 bg-black border-y border-gray-900">
-            <div class="max-w-md mx-auto text-center">
-                <h2 class="font-teko text-4xl font-bold text-white uppercase mb-1">
-                    Painel de Controle <br/><span class="text-brand-red">SPEEDS</span>
-                </h2>
-                <p class="text-gray-500 text-sm mb-8 px-2">
-                    Sincronize seu dispositivo. Complete o <span class="font-bold text-white">Protocolo Speeds</span> para liberar seu acesso.
-                </p>
+        <section id="interactive-panel" class="py-20 px-4 bg-black overflow-hidden relative">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-red/20 blur-[120px] rounded-full pointer-events-none"></div>
 
-                <div class="mb-2 flex justify-between items-end px-1">
-                    <span class="text-xs font-bold text-white uppercase"><i class="fa-solid fa-microchip text-brand-red mr-1"></i> Carregando Sistema...</span>
-                    <span id="progress-text" class="text-brand-red font-bold text-lg">0%</span>
-                </div>
-                <div class="w-full bg-gray-900 rounded-full h-2 mb-8 overflow-hidden">
-                    <div id="progress-bar" class="bg-brand-red h-full rounded-full transition-all duration-500" style="width: 0%;"></div>
-                </div>
+    <div class="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-12">
+        
+        <div class="flex-1 text-center lg:text-left max-w-lg">
+            <h2 class="font-teko text-5xl md:text-6xl font-bold text-white uppercase leading-tight">
+                Painel <span class="text-brand-red">Speeds v2.0</span>
+            </h2>
+            <p class="text-gray-400 mt-4 text-lg">
+                Sincronize o sistema com seu dispositivo. Ative as funções abaixo para desbloquear a oferta.
+            </p>
 
-                <div class="bg-brand-card border border-gray-800 rounded-2xl p-6 mb-10 space-y-4 text-left shadow-2xl">
-                    <div id="task-1" class="flex items-center gap-4 text-gray-600 transition-colors duration-300">
-                        <i class="far fa-circle text-2xl"></i>
-                        <span class="font-bold text-sm uppercase tracking-wide">1. Ativar Painel</span>
-                    </div>
-                    <div id="task-2" class="flex items-center gap-4 text-gray-600 transition-colors duration-300">
-                        <i class="far fa-circle text-2xl"></i>
-                        <span class="font-bold text-sm uppercase tracking-wide">2. Testar Calibragem</span>
-                    </div>
-                    <div id="task-3" class="flex items-center gap-4 text-gray-600 transition-colors duration-300">
-                        <i class="far fa-circle text-2xl"></i>
-                        <span class="font-bold text-sm uppercase tracking-wide">3. Aplicar Boost</span>
-                    </div>
+            <div class="mt-8 bg-gray-900/80 backdrop-blur border border-gray-800 p-6 rounded-2xl shadow-2xl">
+                <div class="flex justify-between items-end mb-2">
+                    <span id="system-status" class="text-xs font-bold text-gray-500 uppercase tracking-widest"><i class="fa-solid fa-lock mr-2"></i>Sistema Bloqueado</span>
+                    <span id="progress-text" class="font-teko text-3xl text-brand-red leading-none">0%</span>
+                </div>
+                <div class="w-full bg-black rounded-full h-3 mb-6 overflow-hidden border border-gray-800">
+                    <div id="progress-bar" class="bg-gradient-to-r from-red-900 to-brand-red h-full rounded-full transition-all duration-700 ease-out shadow-[0_0_15px_#ff0000]" style="width: 0%;"></div>
                 </div>
 
-                <div id="phone-container" class="phone-frame border-gray-800 bg-gray-900 mx-auto relative z-10">
-                    <div class="phone-screen font-poppins bg-brand-surface flex flex-col">
-                        <div class="p-4 flex justify-between items-center border-b border-white/5">
-                            <span class="font-teko text-xl tracking-wider text-white">SPEEDS<span class="text-brand-red">SENSI</span></span>
-                            <i class="fa-solid fa-bars text-gray-500"></i>
-                        </div>
-
-                        <div class="flex-1 p-4 overflow-y-auto custom-scrollbar relative">
-                            
-                            <div class="flex justify-center my-6">
-                                <button id="app-main-toggle-btn" class="w-32 h-32 rounded-full bg-brand-card border-2 border-gray-700 flex items-center justify-center shadow-lg group active:scale-95 transition-all">
-                                    <i class="fa-solid fa-power-off text-4xl text-gray-600 group-hover:text-gray-400 transition-colors toggle-icon"></i>
-                                </button>
-                            </div>
-
-                            <div class="grid grid-cols-3 gap-2 mb-6 opacity-30 transition-opacity duration-500" id="app-stats">
-                                <div class="bg-black/30 p-2 rounded text-center border border-white/5">
-                                    <p class="text-xs text-gray-500">PING</p>
-                                    <p class="font-teko text-xl text-gray-300" data-stat="ping">--</p>
-                                </div>
-                                <div class="bg-black/30 p-2 rounded text-center border border-white/5">
-                                    <p class="text-xs text-gray-500">FPS</p>
-                                    <p class="font-teko text-xl text-gray-300" data-stat="fps">--</p>
-                                </div>
-                                <div class="bg-black/30 p-2 rounded text-center border border-white/5">
-                                    <p class="text-xs text-gray-500">SENSI</p>
-                                    <p class="font-teko text-xl text-gray-300" data-stat="sensi">--</p>
-                                </div>
-                            </div>
-
-                            <div class="space-y-3 opacity-30 pointer-events-none transition-opacity duration-500" id="app-functions">
-                                <div class="flex items-center justify-between bg-black/20 p-3 rounded border border-white/5">
-                                    <span class="text-xs font-bold text-gray-300">Calibrar Y</span>
-                                    <input type="checkbox" class="w-5 h-5 accent-brand-red cursor-pointer app-checkbox">
-                                </div>
-                                <div class="flex items-center justify-between bg-black/20 p-3 rounded border border-white/5">
-                                    <span class="text-xs font-bold text-gray-300">No Recoil</span>
-                                    <input type="checkbox" class="w-5 h-5 accent-brand-red cursor-pointer app-checkbox">
-                                </div>
-                                <button id="app-optimize-btn" class="w-full bg-gray-800 text-white text-xs font-bold py-3 rounded mt-4 border border-gray-700">
-                                    OTIMIZAR AGORA
-                                </button>
-                            </div>
-
-                        </div>
+                <div class="space-y-4">
+                    <div id="task-1" class="flex items-center gap-4 text-gray-600 transition-all duration-300">
+                        <div class="w-8 h-8 rounded-full bg-black border border-gray-800 flex items-center justify-center"><i class="fa-solid fa-power-off text-xs"></i></div>
+                        <span class="font-bold text-sm uppercase tracking-wide">1. Iniciar Sistema</span>
+                    </div>
+                    <div id="task-2" class="flex items-center gap-4 text-gray-600 transition-all duration-300">
+                        <div class="w-8 h-8 rounded-full bg-black border border-gray-800 flex items-center justify-center"><i class="fa-solid fa-sliders text-xs"></i></div>
+                        <span class="font-bold text-sm uppercase tracking-wide">2. Ativar Regedit</span>
+                    </div>
+                    <div id="task-3" class="flex items-center gap-4 text-gray-600 transition-all duration-300">
+                        <div class="w-8 h-8 rounded-full bg-black border border-gray-800 flex items-center justify-center"><i class="fa-solid fa-rocket text-xs"></i></div>
+                        <span class="font-bold text-sm uppercase tracking-wide">3. Otimizar FPS</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+
+        <div class="flex-1 relative perspective-1000">
+            <div class="css-iphone mx-auto bg-black border-[8px] border-[#1a1a1a] rounded-[50px] shadow-2xl h-[700px] w-[350px] relative overflow-hidden ring-4 ring-black">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-black rounded-b-2xl z-50 flex justify-center items-center space-x-2">
+                    <div class="w-12 h-1 bg-gray-800 rounded-full"></div>
+                    <div class="w-1 h-1 bg-blue-900/50 rounded-full"></div>
+                </div>
+
+                <div class="w-full h-full bg-[#050505] text-white font-poppins flex flex-col relative">
+                    
+                    <div class="pt-10 pb-4 px-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent">
+                        <div>
+                            <p class="text-[10px] text-gray-500 font-bold tracking-widest">USUÁRIO DETECTADO</p>
+                            <p class="font-teko text-xl text-white tracking-wider">SPEEDS <span class="text-brand-red">APP</span></p>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-gray-900 flex items-center justify-center border border-gray-800">
+                            <i class="fa-solid fa-user text-xs text-gray-500"></i>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 px-6 flex flex-col">
+                        
+                        <div class="flex justify-center py-8 relative">
+                            <div id="power-glow" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-brand-red/0 rounded-full blur-2xl transition-all duration-700"></div>
+                            
+                            <button id="btn-power" class="relative w-32 h-32 rounded-full bg-[#0a0a0a] border-4 border-[#1f1f1f] shadow-[inset_0_4px_10px_rgba(0,0,0,1)] flex flex-col items-center justify-center group transition-all duration-300 active:scale-95 z-10 hover:border-gray-600">
+                                <i class="fa-solid fa-power-off text-3xl text-gray-600 mb-2 transition-all duration-500 group-hover:text-gray-400"></i>
+                                <span id="power-label" class="text-[10px] font-bold text-gray-600 uppercase tracking-widest transition-all duration-500">OFF</span>
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-3 mb-6">
+                            <div class="bg-[#111] p-3 rounded-xl border border-white/5 text-center">
+                                <p class="text-[9px] text-gray-500 font-bold uppercase">Ping</p>
+                                <p id="stat-ping" class="font-teko text-2xl text-gray-600 transition-colors">--</p>
+                            </div>
+                            <div class="bg-[#111] p-3 rounded-xl border border-white/5 text-center">
+                                <p class="text-[9px] text-gray-500 font-bold uppercase">FPS</p>
+                                <p id="stat-fps" class="font-teko text-2xl text-gray-600 transition-colors">--</p>
+                            </div>
+                            <div class="bg-[#111] p-3 rounded-xl border border-white/5 text-center">
+                                <p class="text-[9px] text-gray-500 font-bold uppercase">Sensi</p>
+                                <p id="stat-sensi" class="font-teko text-2xl text-gray-600 transition-colors">OFF</p>
+                            </div>
+                        </div>
+
+                        <div id="functions-container" class="flex-1 space-y-3 opacity-40 grayscale pointer-events-none transition-all duration-500">
+                            
+                            <div class="bg-[#111] p-4 rounded-xl border border-white/5 flex items-center justify-between group hover:border-brand-red/30 transition-colors">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded bg-black flex items-center justify-center text-brand-red"><i class="fa-solid fa-crosshairs"></i></div>
+                                    <div>
+                                        <p class="text-sm font-bold text-white leading-tight">Regedit Mobile</p>
+                                        <p class="text-[10px] text-gray-500">Aumenta precisão</p>
+                                    </div>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer app-trigger">
+                                    <div class="w-11 h-6 bg-gray-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-red"></div>
+                                </label>
+                            </div>
+
+                            <div class="bg-[#111] p-4 rounded-xl border border-white/5 flex items-center justify-between group hover:border-brand-red/30 transition-colors">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded bg-black flex items-center justify-center text-brand-red"><i class="fa-solid fa-bullseye"></i></div>
+                                    <div>
+                                        <p class="text-sm font-bold text-white leading-tight">Mira Gruda</p>
+                                        <p class="text-[10px] text-gray-500">Foco no Head</p>
+                                    </div>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer app-trigger">
+                                    <div class="w-11 h-6 bg-gray-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-red"></div>
+                                </label>
+                            </div>
+
+                            <button id="btn-optimize" class="w-full mt-4 bg-gray-800 text-gray-400 font-teko text-xl py-4 rounded-xl tracking-wider transition-all duration-300 border border-gray-700">
+                                <i class="fa-solid fa-rocket mr-2"></i> OTIMIZAR SISTEMA
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <div class="p-4 text-center">
+                        <div class="w-32 h-1 bg-gray-800 rounded-full mx-auto"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
         <section class="py-12 bg-red-900/10 border-y border-brand-red/20">
             <div class="max-w-4xl mx-auto text-center px-4 reveal">
