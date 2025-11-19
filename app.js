@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // --- 1. CONFIGURAÇÕES GERAIS E UI ---
+    // --- 1. INTERFACE E EFEITOS ---
     const setupUI = () => {
         // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Scroll Reveal (Efeito de aparecer ao rolar)
+        // Scroll Reveal
         const observer = new IntersectionObserver((entries) => { 
             entries.forEach(entry => { 
                 if(entry.isIntersecting) entry.target.classList.add('animate-fade-in');
@@ -19,182 +19,134 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Notificações de Venda (Prova Social)
+        // Notificações de Prova Social (Brand: Speeds)
         if (window.Notiflix) { 
-            // Estilo customizado para o Speeds Sensi (Preto e Vermelho Tech)
             Notiflix.Notify.Init({
-                width: '300px',
-                position: 'left-bottom',
-                backgroundColor: '#111',
-                textColor: '#fff',
-                borderRadius: '4px',
-                fontFamily: 'Poppins',
+                width: '300px', position: 'left-bottom', backgroundColor: '#111',
+                textColor: '#fff', borderRadius: '8px', fontFamily: 'Poppins',
                 success: { border: '1px solid #dc2626', notifIconColor: '#dc2626' }
             });
 
             setInterval(() => { 
-                const names = ["Lucas M.", "Gabriel S.", "João P.", "Mateus K.", "Enzo F."];
+                const names = ["Mateus K.", "Lucas S.", "João P.", "Enzo G.", "Rafael M."];
                 const randomName = names[Math.floor(Math.random() * names.length)];
-                const messages = [
-                    `<strong>${randomName}</strong> ativou o Speeds Vitalício.`, 
-                    `<strong>Nova venda:</strong> Plano Speeds PRO liberado.`, 
-                    `<strong>${randomName}</strong> acabou de otimizar a mira.`
+                const msgs = [
+                    `<strong>${randomName}</strong> adquiriu o Speeds Vitalício.`,
+                    `<strong>Nova venda:</strong> Acesso Speeds PRO liberado.`,
+                    `<strong>${randomName}</strong> ativou o Regedit Mobile.`
                 ];
-                Notiflix.Notify.Success(messages[Math.floor(Math.random() * messages.length)], { plainText: false });
-            }, 12000 + Math.random() * 8000);
+                Notiflix.Notify.Success(msgs[Math.floor(Math.random() * msgs.length)], { plainText: false });
+            }, 15000);
         }
     };
 
-    // --- 2. LÓGICA DA GAMIFICAÇÃO (Jornada do Usuário) ---
+    // --- 2. GAMIFICAÇÃO (Lógica de Vendas) ---
     const setupGamification = () => {
         const progressBar = document.getElementById('progress-bar');
         const progressText = document.getElementById('progress-text');
-        const vitalicioPlanCard = document.getElementById('vitalicio-plan-card');
-        let journeyCompleted = false;
+        const vitalicioCard = document.getElementById('vitalicio-plan-card');
+        let completed = false;
 
         const tasks = {
-            activated: { completed: false, points: 30, element: document.getElementById('task-1') },
-            testedAim: { completed: false, points: 40, element: document.getElementById('task-2') },
-            optimized: { completed: false, points: 30, element: document.getElementById('task-3') }
+            t1: { done: false, el: document.getElementById('task-1'), pts: 30 },
+            t2: { done: false, el: document.getElementById('task-2'), pts: 40 },
+            t3: { done: false, el: document.getElementById('task-3'), pts: 30 }
         };
 
-        const updateProgress = () => {
-            if (journeyCompleted) return;
-            let points = 0;
-            if (tasks.activated.completed) points += tasks.activated.points;
-            if (tasks.testedAim.completed) points += tasks.testedAim.points;
-            if (tasks.optimized.completed) points += tasks.optimized.points;
+        const update = () => {
+            if (completed) return;
+            let pts = 0;
+            if(tasks.t1.done) pts += tasks.t1.pts;
+            if(tasks.t2.done) pts += tasks.t2.pts;
+            if(tasks.t3.done) pts += tasks.t3.pts;
 
-            if(progressBar) progressBar.style.width = `${points}%`;
-            if(progressText) progressText.textContent = `${points}%`;
+            if(progressBar) progressBar.style.width = `${pts}%`;
+            if(progressText) progressText.innerText = `${pts}%`;
 
-            if (points >= 100 && !journeyCompleted) {
-                journeyCompleted = true;
+            if (pts >= 100 && !completed) {
+                completed = true;
                 setTimeout(() => {
-                    if(window.Notiflix) Notiflix.Notify.Success('<strong>SISTEMA LIBERADO!</strong> Oferta Speeds Sensi desbloqueada.', { timeout: 5000 });
-                    
-                    // Efeito visual no card de preço
-                    if(vitalicioPlanCard) {
-                        vitalicioPlanCard.classList.add('border-yellow-400', 'shadow-[0_0_40px_rgba(250,204,21,0.3)]');
-                        vitalicioPlanCard.classList.remove('border-red-600');
+                    if(window.Notiflix) Notiflix.Notify.Success('<strong>SISTEMA LIBERADO!</strong> Oferta exclusiva desbloqueada.', { timeout: 5000 });
+                    if(vitalicioCard) {
+                        vitalicioCard.classList.add('border-yellow-500', 'shadow-[0_0_50px_rgba(234,179,8,0.4)]');
+                        vitalicioCard.classList.remove('border-red-600');
                     }
-                    
-                    // Auto-scroll para preços
                     document.getElementById('planos')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 800);
+                }, 1000);
             }
         };
 
-        // Função global para completar tarefas
-        window.completeTask = (taskName) => {
-            if (journeyCompleted || !tasks[taskName] || tasks[taskName].completed) return;
-            tasks[taskName].completed = true;
+        window.completeTask = (id) => {
+            let key = '';
+            if(id === 'activated') key = 't1';
+            else if(id === 'aim') key = 't2';
+            else if(id === 'opt') key = 't3';
+
+            if (completed || !tasks[key] || tasks[key].done) return;
             
-            const el = tasks[taskName].element;
-            if (el) {
-                el.classList.remove('text-gray-600');
-                el.classList.add('text-red-500', 'font-bold');
-                el.querySelector('i').classList.replace('far', 'fas'); // Muda ícone para preenchido
-                el.querySelector('i').classList.replace('fa-circle', 'fa-circle-check');
+            tasks[key].done = true;
+            const el = tasks[key].el;
+            if(el) {
+                el.classList.remove('text-gray-500');
+                el.classList.add('text-red-500', 'font-bold', 'bg-red-900/20');
+                el.querySelector('i').classList.replace('far', 'fas');
+                el.querySelector('i').classList.replace('fa-circle', 'fa-check-circle');
             }
-
-            if (window.Notiflix) {
-                const msgs = {
-                    activated: 'Speeds Sensi Conectado!',
-                    testedAim: 'Calibragem Concluída!',
-                    optimized: 'Dispositivo Otimizado!'
-                };
-                Notiflix.Notify.Success(msgs[taskName]);
-            }
-            updateProgress();
+            update();
         };
     };
 
-    // --- 3. FAQ DINÂMICO (Atualizado para Speeds) ---
-    const setupFAQ = () => {
-        const container = document.getElementById('faq-container');
-        if (!container) return;
-        
-        const faqs = [
-            { q: "O Speeds Sensi dá ban?", a: "Não. O Speeds funciona como um otimizador de tela e processamento. Ele não injeta códigos dentro do Free Fire, portanto é 100% seguro e anti-ban." },
-            { q: "Serve para qualquer celular?", a: "Sim. O sistema foi desenhado para rodar tanto em Android (Samsung, Xiaomi, Motorola) quanto em iOS (iPhone), mesmo em aparelhos mais antigos." },
-            { q: "Como recebo o acesso?", a: "Imediatamente após o pagamento. Você recebe um e-mail com seu login e o link para baixar o painel Speeds." },
-            { q: "Tem garantia?", a: "Sim, garantia incondicional de 7 dias. Se não subir capa, devolvemos seu dinheiro." }
-        ];
-
-        container.innerHTML = faqs.map((item, idx) => `
-            <div class="bg-gray-900/50 border border-gray-800 rounded mb-2 overflow-hidden">
-                <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full text-left p-4 font-semibold text-gray-200 flex justify-between items-center hover:bg-gray-800 transition">
-                    ${item.q} <i class="fa-solid fa-chevron-down text-xs"></i>
-                </button>
-                <div class="hidden p-4 pt-0 text-gray-400 text-sm border-t border-gray-800/50 mt-2">
-                    ${item.a}
-                </div>
-            </div>
-        `).join('');
-    };
-
-    // --- 4. SIMULADOR DO APP (Lógica do Fake App) ---
+    // --- 3. SIMULADOR DO CELULAR ---
     const setupSimulator = () => {
-        const toggleBtn = document.getElementById('app-main-toggle-btn');
+        const btn = document.getElementById('app-main-toggle-btn');
         const indicators = document.getElementById('status-indicators');
-        const functions = document.getElementById('quick-functions');
-        const floatingPanel = document.getElementById('app-floating-panel'); // Se existir no HTML
-        
+        const menu = document.getElementById('quick-functions');
+        const glow = document.getElementById('btn-glow');
         let isOn = false;
 
-        if(toggleBtn) {
-            toggleBtn.addEventListener('click', () => {
+        if(btn) {
+            btn.addEventListener('click', () => {
                 isOn = !isOn;
-                const span = toggleBtn.querySelector('span');
-                const bg = toggleBtn.querySelector('div.bg-gray-900');
-                const border = toggleBtn.querySelector('.absolute');
-
+                const span = btn.querySelector('span');
+                
                 if (isOn) {
-                    // Ligar
-                    span.textContent = 'ON';
-                    span.classList.replace('text-gray-600', 'text-white');
-                    bg.classList.replace('bg-gray-900', 'bg-red-600');
-                    bg.classList.add('shadow-[0_0_20px_#dc2626]');
-                    border.classList.add('animate-spin'); // Efeito visual extra
+                    // LIGAR
+                    span.innerText = "ON";
+                    span.classList.replace('text-gray-700', 'text-white');
+                    if(glow) glow.classList.replace('opacity-0', 'opacity-100');
                     
                     indicators.classList.remove('opacity-30');
-                    functions.classList.remove('opacity-30', 'pointer-events-none');
+                    menu.classList.remove('opacity-40', 'pointer-events-none');
                     
-                    // Atualizar números falsos
-                    document.querySelector('[data-stat="latency"]').textContent = "18ms";
-                    document.querySelector('[data-stat="fps"]').textContent = "60";
-                    document.querySelector('[data-stat="precision"]').textContent = "+90%";
+                    // Popular números falsos
+                    document.querySelector('[data-stat="latency"]').innerText = "18ms";
+                    document.querySelector('[data-stat="fps"]').innerText = "60";
+                    document.querySelector('[data-stat="precision"]').innerText = "+95%";
                     
                     window.completeTask('activated');
                 } else {
-                    // Desligar
-                    span.textContent = 'OFF';
-                    span.classList.replace('text-white', 'text-gray-600');
-                    bg.classList.replace('bg-red-600', 'bg-gray-900');
-                    bg.classList.remove('shadow-[0_0_20px_#dc2626]');
-                    border.classList.remove('animate-spin');
-
+                    // DESLIGAR
+                    span.innerText = "OFF";
+                    span.classList.replace('text-white', 'text-gray-700');
+                    if(glow) glow.classList.replace('opacity-100', 'opacity-0');
+                    
                     indicators.classList.add('opacity-30');
-                    functions.classList.add('opacity-30', 'pointer-events-none');
+                    menu.classList.add('opacity-40', 'pointer-events-none');
                 }
             });
         }
 
-        // Listener para checkboxes do simulador
-        document.querySelectorAll('#quick-functions input').forEach(input => {
-            input.addEventListener('change', () => {
-                // Se marcar 2 opções, completa a tarefa
-                const checkedCount = document.querySelectorAll('#quick-functions input:checked').length;
-                if(checkedCount >= 1) window.completeTask('testedAim');
-                if(checkedCount >= 2) window.completeTask('optimized');
+        // Listeners dos Checkboxes
+        document.querySelectorAll('#quick-functions input').forEach(chk => {
+            chk.addEventListener('change', () => {
+                const count = document.querySelectorAll('#quick-functions input:checked').length;
+                if(count >= 1) window.completeTask('aim');
+                if(count >= 2) window.completeTask('opt');
             });
         });
     };
 
-    // INICIALIZAÇÃO
     setupUI();
     setupGamification();
-    setupFAQ();
     setupSimulator();
 });
