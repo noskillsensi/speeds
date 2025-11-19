@@ -3,230 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speeds Sensi - O Painel da Mira Perfeita</title>
-    <meta name="description" content="Domine o Free Fire com o Speeds Sensi. Otimização, sensibilidade e regedit mobile em um único aplicativo.">
-    
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <title>Speeds Sensi - Painel Oficial</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/notiflix@2.6.0/dist/notiflix-aio-2.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./style.css">
 
-    <script>
-      window.pixelId = "687c11e3a04e4348ef2a8d8d"; // Verifique se o pixel muda para o sócio
-      var a = document.createElement("script");
-      a.setAttribute("async", "");
-      a.setAttribute("defer", "");
-      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-      document.head.appendChild(a);
-    </script>
-    <script
-      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-      data-utmify-prevent-xcod-sck
-      data-utmify-prevent-subids
-      async
-      defer
-    ></script>
+    </head>
+<body class="bg-black text-gray-200 font-poppins overflow-x-hidden">
 
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1767511740661543'); // ATENÇÃO: Verificar Pixel ID do Sócio
-    fbq('track', 'PageView');
-    fbq('track', 'ViewContent', {
-        content_name: 'Página de Vendas - Speeds Sensi',
-        content_category: 'Software'
-    });
-    </script>
-</head>
-<body class="bg-black text-gray-200 font-poppins">
     <main>
-        <section class="relative flex items-center justify-center pt-20 pb-10 px-4 sm:px-6 lg:px-8 overflow-hidden bg-black min-h-screen">
+        <section class="relative w-full min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-20 px-4 text-center overflow-hidden">
+            
             <div class="absolute inset-0 z-0">
-                <img src="https://i.imgur.com/iaMeAb7.jpeg" alt="Background Free Fire" class="w-full h-full object-cover opacity-20 ken-burns" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/90 to-transparent"></div>
+                <img src="https://i.imgur.com/iaMeAb7.jpeg" alt="Background" class="w-full h-full object-cover opacity-20" />
+                <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/90 to-black"></div>
             </div>
-            <div class="relative max-w-5xl mx-auto text-center z-10">
-                <img src="./speeds-logo.png" alt="Logo Speeds Sensi" class="mx-auto mb-6 w-48 md:w-64 drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]"/>
+
+            <div class="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center">
                 
-                <h1 class="font-teko text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white uppercase tracking-wide leading-tight">
-                    A Velocidade que <br/> <span class="text-red-600 glitch-text">Faltava na Sua Mira</span>
-                </h1>
-                
-                <div class="inline-block mt-6 bg-red-900/20 border border-red-500/30 text-red-300 rounded-full px-4 py-1.5 text-sm font-semibold backdrop-blur-sm">
-                    <i class="fa-solid fa-bolt mr-2"></i> SISTEMA SPEEDS ATUALIZADO
+                <div class="mb-8">
+                    <img src="./speeds-logo.png" alt="Speeds Sensi" class="w-64 md:w-80 h-auto mx-auto drop-shadow-[0_0_15px_rgba(220,38,38,0.6)]" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';"/>
+                    <h1 id="logo-fallback" class="hidden font-teko text-5xl text-red-600 font-bold tracking-widest border-2 border-red-600 px-4 py-2 rounded">SPEEDS.SENSI</h1>
                 </div>
                 
-                <p class="text-base sm:text-lg text-gray-300 mt-6 mb-8 max-w-2xl mx-auto">
-                    O segredo dos pro-players revelado. Instale o <span class="font-bold text-white">Speeds Sensi</span> no Android ou iOS e veja sua taxa de HS subir instantaneamente.
+                <h1 class="font-teko text-5xl sm:text-6xl md:text-7xl font-bold text-white uppercase leading-none mb-6">
+                    A Velocidade que <br/> 
+                    <span class="text-red-600 relative inline-block">
+                        Faltava na Sua Mira
+                        <span class="absolute top-0 left-0 -ml-1 text-red-600 opacity-50 animate-pulse" style="clip-path: inset(20% 0 80% 0);">Faltava na Sua Mira</span>
+                    </span>
+                </h1>
+                
+                <div class="inline-flex items-center gap-2 bg-red-900/30 border border-red-500/30 text-red-200 rounded-full px-4 py-1 text-sm font-semibold backdrop-blur-md mb-8">
+                    <i class="fa-solid fa-bolt text-yellow-400"></i> 
+                    <span>SISTEMA ATUALIZADO 2025</span>
+                </div>
+                
+                <p class="text-gray-400 text-lg max-w-2xl mb-10 leading-relaxed">
+                    O segredo dos pro-players revelado. Instale o <span class="text-white font-bold">Speeds Sensi</span> e aumente sua taxa de HS instantaneamente.
                 </p>
                 
-                <a href="#interactive-panel" class="inline-block bg-red-600 hover:bg-red-700 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-md text-lg sm:text-xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] transition-all duration-300 transform hover:scale-105 border border-red-500">
-                    ATIVAR PAINEL SPEEDS
+                <a href="#interactive-panel" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-red-600 font-teko text-2xl rounded-lg hover:bg-red-700 hover:shadow-[0_0_30px_rgba(220,38,38,0.5)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600 ring-offset-black">
+                    <span class="mr-2">ATIVAR PAINEL AGORA</span>
+                    <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
                 </a>
             </div>
         </section>
 
-        <section id="interactive-panel" class="flex flex-col items-center justify-center py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-black">
-            <div class="text-center mb-8 max-w-3xl mx-auto reveal">
-                <h2 class="font-teko text-4xl sm:text-5xl md:text-6xl font-bold text-white uppercase">
-                    Configure o Speeds
-                </h2>
-                <p class="text-lg text-gray-400 mt-2">
-                    Complete a configuração inicial do <span class="font-bold text-red-500">Speeds Sensi</span> e libere seu acesso exclusivo.
-                </p>
-            </div>
+        <section id="interactive-panel" class="relative z-20 py-24 px-4 bg-black border-t border-gray-900">
             
-            <div id="gamification-progress" class="w-full max-w-4xl mx-auto mb-6 reveal">
-                <div class="flex justify-between items-center mb-2">
-                    <p class="font-teko text-xl text-red-500 uppercase tracking-wider">Sincronizando Sistema...</p>
-                    <p id="progress-text" class="font-bold text-lg text-white">0%</p>
-                </div>
-                <div class="w-full bg-gray-900 rounded-full h-4 border border-gray-800">
-                    <div id="progress-bar" class="bg-gradient-to-r from-red-800 to-red-500 h-full rounded-full progress-bar-inner shadow-[0_0_10px_#ef4444]" style="width: 0%;"></div>
-                </div>
+            <div class="text-center mb-12 reveal">
+                <h2 class="font-teko text-4xl md:text-5xl text-white uppercase">
+                    <span class="text-red-600">Painel</span> Interativo
+                </h2>
+                <p class="text-gray-500">Interaja com o simulador abaixo para liberar seu acesso.</p>
             </div>
 
-            <div class="w-full max-w-4xl mx-auto mb-8 reveal text-center">
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
-                    <div id="task-1" class="flex items-center gap-2 text-gray-600 transition-colors duration-300">
-                        <i class="far fa-circle"></i> <span class="font-semibold text-sm">1. Ligar Speeds</span>
-                    </div>
-                    <div id="task-2" class="flex items-center gap-2 text-gray-600 transition-colors duration-300">
-                        <i class="far fa-circle"></i> <span class="font-semibold text-sm">2. Calibrar Mira</span>
-                    </div>
-                    <div id="task-3" class="flex items-center gap-2 text-gray-600 transition-colors duration-300">
-                        <i class="far fa-circle"></i> <span class="font-semibold text-sm">3. Otimizar CPU</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col lg:flex-row items-center justify-center gap-8 w-full max-w-4xl reveal">
-                <div id="phone-container" class="phone-frame border-gray-800 shadow-2xl">
-                    <div class="phone-screen font-poppins bg-[#0a0a0a]">
-                        <div id="app-dashboard-screen" class="absolute inset-0 p-6 flex flex-col overflow-hidden custom-scrollbar">
-                            <header class="flex justify-between items-center flex-shrink-0 border-b border-gray-800 pb-4 mb-4">
-                                <span class="font-teko text-2xl text-white tracking-wider">SPEEDS<span class="text-red-600">.SENSI</span></span>
-                                <div class="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center text-red-500"><i class="fa-solid fa-signal"></i></div>
-                            </header>
-                            
-                            <div class="text-center my-6 flex-shrink-0">
-                                <button id="app-main-toggle-btn" class="relative w-32 h-32 rounded-full flex items-center justify-center mx-auto cursor-pointer pulse-attention group">
-                                    <div class="absolute inset-0 rounded-full border-2 border-red-600/30 group-hover:border-red-600 transition-colors"></div>
-                                    <div class="w-[90%] h-[90%] bg-gray-900 rounded-full flex items-center justify-center transition-all duration-300 shadow-inner">
-                                        <span class="font-teko text-5xl text-gray-600 transition-colors duration-300">OFF</span>
-                                    </div>
-                                </button>
-                                <p class="mt-2 text-xs text-gray-500 uppercase tracking-widest">Toque para ativar</p>
-                            </div>
-
-                            <div id="status-indicators" class="my-4 grid grid-cols-3 gap-2 text-center transition-opacity duration-500 opacity-30 flex-shrink-0">
-                                <div class="bg-gray-900/50 p-2 rounded"><p data-stat="latency" class="font-teko text-2xl text-gray-500">--</p><p class="text-[10px] text-gray-400 uppercase">Ping Ms</p></div>
-                                <div class="bg-gray-900/50 p-2 rounded"><p data-stat="fps" class="font-teko text-2xl text-gray-500">--</p><p class="text-[10px] text-gray-400 uppercase">FPS</p></div>
-                                <div class="bg-gray-900/50 p-2 rounded"><p data-stat="precision" class="font-teko text-2xl text-gray-500">0%</p><p class="text-[10px] text-gray-400 uppercase">Precisão</p></div>
-                            </div>
-
-                            <div id="quick-functions" class="flex-grow space-y-3 transition-opacity duration-500 opacity-30 pointer-events-none">
-                                <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-between border border-gray-800">
-                                    <div class="flex items-center gap-3"><i class="fa-solid fa-crosshairs text-red-600"></i><span class="text-sm font-semibold">Aim Lock v2</span></div>
-                                    <div class="relative inline-block w-10"><input type="checkbox" data-sync="switch-aim-1" id="quick-switch-1" class="peer sr-only"/><div class="w-10 h-5 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-red-600"></div></div>
-                                </div>
-                                <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-between border border-gray-800">
-                                    <div class="flex items-center gap-3"><i class="fa-solid fa-skull text-red-600"></i><span class="text-sm font-semibold">Headshot Only</span></div>
-                                    <div class="relative inline-block w-10"><input type="checkbox" data-sync="switch-aim-6" id="quick-switch-2" class="peer sr-only"/><div class="w-10 h-5 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-red-600"></div></div>
-                                </div>
-                                <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-between border border-gray-800">
-                                    <div class="flex items-center gap-3"><i class="fa-solid fa-microchip text-red-600"></i><span class="text-sm font-semibold">Boost FPS</span></div>
-                                    <div class="relative inline-block w-10"><input type="checkbox" data-sync="switch-opt-3" id="quick-switch-3" class="peer sr-only"/><div class="w-10 h-5 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-red-600"></div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="app-floating-panel" class="hidden w-full max-w-sm bg-[#0a0a0a] rounded-2xl shadow-2xl shadow-red-900/20 z-50 overflow-hidden border border-gray-800">
-                   <div class="p-4 text-center text-gray-400">
-                        <i class="fa-solid fa-circle-info mb-2"></i><br>
-                        Painel Avançado Speeds Sensi
-                        <br><span class="text-xs text-red-500">Conectado com Sucesso</span>
-                   </div>
-                   </div>
-            </div>
-        </section>
-
-        <section id="planos" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-black relative">
-            <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-900 to-transparent"></div>
-            <div class="max-w-6xl mx-auto reveal">
-                <div class="text-center mb-12 sm:mb-16">
-                    <p class="font-teko text-2xl text-red-500 mb-2 uppercase tracking-widest">Acesso Imediato</p>
-                    <h2 class="font-teko text-4xl sm:text-5xl md:text-6xl font-bold text-white uppercase">
-                        Entre para a Tropa Speeds
-                    </h2>
-                </div>
+            <div class="flex flex-col lg:flex-row items-center justify-center gap-10 max-w-6xl mx-auto">
                 
-                <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-                    <div class="bg-gray-900/30 border border-gray-800 p-8 text-center h-full flex flex-col rounded-xl hover:border-gray-600 transition-colors" data-plan-name="Plano Mensal" data-plan-value="4.97">
-                        <h3 class="font-teko text-3xl text-white uppercase">Mensal</h3>
-                        <p class="font-teko text-5xl text-white mb-6 mt-2">R$4<span class="text-3xl text-gray-500">,97</span></p>
-                        <ul class="space-y-3 text-gray-400 mb-8 text-left text-sm flex-grow">
-                            <li class="flex items-center"><i class="fa-solid fa-check text-red-600 w-5 mr-2"></i> Painel Speeds Basic</li>
-                            <li class="flex items-center"><i class="fa-solid fa-check text-red-600 w-5 mr-2"></i> Otimizador de FPS</li>
-                        </ul>
-                        <a href="LINK_CHECKOUT_MENSAL_AQUI" class="purchase-link w-full mt-auto bg-gray-800 hover:bg-gray-700 text-white py-3 rounded font-bold uppercase tracking-wide transition-colors">Começar Agora</a>
-                    </div>
-
-                    <div id="vitalicio-plan-card" class="bg-gradient-to-b from-red-950/40 to-black border border-red-600 p-8 text-center relative transform lg:scale-110 shadow-[0_0_30px_rgba(220,38,38,0.15)] rounded-xl flex flex-col" data-plan-name="Plano Permanente" data-plan-value="14.97">
-                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded-full shadow-lg">Recomendado</div>
-                        <h3 class="font-teko text-4xl text-white uppercase text-shadow-red">Vitalício</h3>
-                        <p class="text-red-200 text-sm mb-2">Pagamento Único</p>
-                        <div id="vitalicio-price-container">
-                            <p class="font-teko text-6xl text-white mb-6">R$14<span class="text-3xl text-red-400">,97</span></p>
+                <div class="w-full max-w-md space-y-6">
+                    <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                        <div class="flex justify-between text-sm font-bold text-gray-400 mb-2">
+                            <span>STATUS DO SISTEMA</span>
+                            <span id="progress-text" class="text-red-500">0%</span>
                         </div>
-                        <ul class="space-y-3 text-gray-300 mb-8 text-left text-sm flex-grow">
-                           <li class="flex items-center"><i class="fa-solid fa-check text-red-500 w-5 mr-2"></i> <span class="font-bold">Painel Speeds PRO</span></li>
-                           <li class="flex items-center"><i class="fa-solid fa-check text-red-500 w-5 mr-2"></i> Regedit Mobile VIP</li>
-                           <li class="flex items-center"><i class="fa-solid fa-check text-red-500 w-5 mr-2"></i> Suporte Prioritário</li>
-                        </ul>
-                        <a id="vitalicio-checkout-link" href="LINK_CHECKOUT_VITALICIO_AQUI" class="purchase-link w-full mt-auto bg-red-600 hover:bg-red-700 text-white py-4 rounded font-bold uppercase tracking-wide shadow-lg shadow-red-900/50 transition-all hover:scale-105">Liberar Acesso VIP</a>
+                        <div class="w-full bg-black rounded-full h-3 overflow-hidden">
+                            <div id="progress-bar" class="bg-red-600 h-full w-0 transition-all duration-1000 ease-out shadow-[0_0_10px_#dc2626]"></div>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <div id="task-1" class="flex items-center gap-3 text-gray-600 text-sm"><i class="far fa-circle"></i> Ativar Sistema Speeds</div>
+                            <div id="task-2" class="flex items-center gap-3 text-gray-600 text-sm"><i class="far fa-circle"></i> Testar Aim Lock</div>
+                            <div id="task-3" class="flex items-center gap-3 text-gray-600 text-sm"><i class="far fa-circle"></i> Otimizar FPS</div>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="bg-gray-900/30 border border-gray-800 p-8 text-center h-full flex flex-col rounded-xl hover:border-gray-600 transition-colors" data-plan-name="Plano Trimestral" data-plan-value="9.97">
-                        <h3 class="font-teko text-3xl text-white uppercase">Trimestral</h3>
-                        <p class="font-teko text-5xl text-white mb-6 mt-2">R$9<span class="text-3xl text-gray-500">,97</span></p>
-                        <ul class="space-y-3 text-gray-400 mb-8 text-left text-sm flex-grow">
-                            <li class="flex items-center"><i class="fa-solid fa-check text-red-600 w-5 mr-2"></i> Painel Speeds Avançado</li>
-                            <li class="flex items-center"><i class="fa-solid fa-check text-red-600 w-5 mr-2"></i> Sensi dos Famosos</li>
-                        </ul>
-                        <a href="LINK_CHECKOUT_TRIMESTRAL_AQUI" class="purchase-link w-full mt-auto bg-gray-800 hover:bg-gray-700 text-white py-3 rounded font-bold uppercase tracking-wide transition-colors">Começar Agora</a>
+                <div class="relative w-full max-w-[350px]">
+                    <div class="relative bg-gray-900 rounded-[3rem] p-2 shadow-2xl border-4 border-gray-800 ring-1 ring-red-900/20">
+                        <div class="bg-[#050505] rounded-[2.5rem] h-[650px] overflow-hidden relative flex flex-col">
+                            
+                            <div class="flex justify-between items-center p-6 pt-8">
+                                <span class="font-teko text-xl text-white tracking-widest">SPEEDS<span class="text-red-600">.APP</span></span>
+                                <i class="fa-solid fa-wifi text-gray-600 text-xs"></i>
+                            </div>
+
+                            <div class="flex-1 flex flex-col items-center justify-center p-6 relative">
+                                
+                                <button id="app-main-toggle-btn" class="group relative w-40 h-40 rounded-full bg-gray-900 border-4 border-gray-800 flex items-center justify-center cursor-pointer hover:border-red-600/50 transition-all duration-500 shadow-2xl">
+                                    <div class="absolute inset-0 rounded-full border border-white/5 group-hover:scale-110 transition-transform duration-700"></div>
+                                    <span class="font-teko text-5xl text-gray-700 group-hover:text-white transition-colors z-10">OFF</span>
+                                    <div class="absolute inset-0 rounded-full bg-red-600 opacity-0 transition-opacity duration-300 blur-xl" id="btn-glow"></div>
+                                </button>
+                                <p class="mt-6 text-gray-500 text-xs tracking-[0.2em] uppercase animate-pulse">Toque para conectar</p>
+
+                                <div id="status-indicators" class="grid grid-cols-3 gap-3 w-full mt-10 opacity-30 transition-opacity duration-500">
+                                    <div class="text-center bg-gray-900/50 p-2 rounded">
+                                        <div class="text-red-500 font-teko text-xl" data-stat="latency">--</div>
+                                        <div class="text-[9px] text-gray-500">MS</div>
+                                    </div>
+                                    <div class="text-center bg-gray-900/50 p-2 rounded">
+                                        <div class="text-red-500 font-teko text-xl" data-stat="fps">--</div>
+                                        <div class="text-[9px] text-gray-500">FPS</div>
+                                    </div>
+                                    <div class="text-center bg-gray-900/50 p-2 rounded">
+                                        <div class="text-red-500 font-teko text-xl" data-stat="precision">--</div>
+                                        <div class="text-[9px] text-gray-500">AIM</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="quick-functions" class="p-6 pb-8 space-y-3 bg-gray-900/30 backdrop-blur opacity-40 pointer-events-none transition-all duration-500">
+                                <div class="flex justify-between items-center bg-black/40 p-3 rounded border border-gray-800/50">
+                                    <span class="text-xs text-gray-300 font-bold"><i class="fa-solid fa-crosshairs text-red-600 mr-2"></i> Aim Lock</span>
+                                    <input type="checkbox" class="accent-red-600 w-4 h-4">
+                                </div>
+                                <div class="flex justify-between items-center bg-black/40 p-3 rounded border border-gray-800/50">
+                                    <span class="text-xs text-gray-300 font-bold"><i class="fa-solid fa-bolt text-red-600 mr-2"></i> Boost FPS</span>
+                                    <input type="checkbox" class="accent-red-600 w-4 h-4">
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-16 px-4 sm:px-6 bg-black border-t border-gray-900">
-            <div class="max-w-3xl mx-auto reveal">
-                <h2 class="font-teko text-4xl text-center text-white uppercase mb-8">Dúvidas Frequentes</h2>
-                <div id="faq-container" class="space-y-3">
-                    </div>
+        <section id="planos" class="py-20 px-4 bg-black">
+            <div class="text-center mb-12">
+                <h2 class="font-teko text-5xl text-white uppercase">Planos de Acesso</h2>
+            </div>
+            <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
+                <div class="bg-gray-900 border border-gray-800 p-6 rounded text-center">
+                    <h3 class="text-white font-teko text-3xl">Mensal</h3>
+                    <p class="text-gray-400 text-sm">Acesso 30 dias</p>
+                    <div class="my-4 text-4xl font-bold text-white">R$4,97</div>
+                    <a href="#" class="block w-full bg-gray-800 text-white py-3 rounded font-bold mt-4 hover:bg-red-600 transition">ESCOLHER</a>
+                </div>
+                 <div id="vitalicio-plan-card" class="bg-gray-900 border-2 border-red-600 p-6 rounded text-center transform scale-105 shadow-[0_0_30px_rgba(220,38,38,0.2)] relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-white px-3 py-1 text-xs font-bold rounded">VIP</div>
+                    <h3 class="text-white font-teko text-4xl text-red-500">Vitalício</h3>
+                    <p class="text-gray-400 text-sm">Nunca expira</p>
+                    <div class="my-4 text-5xl font-bold text-white">R$14,97</div>
+                    <a href="#" class="block w-full bg-red-600 text-white py-3 rounded font-bold mt-4 hover:bg-red-700 transition animate-pulse">COMPRAR AGORA</a>
+                </div>
+                 <div class="bg-gray-900 border border-gray-800 p-6 rounded text-center">
+                    <h3 class="text-white font-teko text-3xl">Trimestral</h3>
+                    <p class="text-gray-400 text-sm">Acesso 90 dias</p>
+                    <div class="my-4 text-4xl font-bold text-white">R$9,97</div>
+                    <a href="#" class="block w-full bg-gray-800 text-white py-3 rounded font-bold mt-4 hover:bg-red-600 transition">ESCOLHER</a>
+                </div>
             </div>
         </section>
 
     </main>
-
-    <footer class="py-8 border-t border-gray-900 bg-black text-center">
-        <div class="max-w-7xl mx-auto px-4">
-            <img src="./speeds-logo.png" alt="Logo Speeds Sensi" class="mx-auto mb-4 h-10 w-auto opacity-50 grayscale hover:grayscale-0 transition-all" />
-            <p class="text-gray-600 text-sm">&copy; 2024 Speeds Sensi Technology.</p>
-            <p class="text-xs text-gray-700 mt-2">Este software é uma ferramenta de otimização independente.</p>
-        </div>
+    
+    <footer class="py-8 text-center text-gray-600 text-sm bg-black border-t border-gray-900">
+        &copy; 2025 Speeds Sensi Technology
     </footer>
 
     <script src="./app.js" defer></script>
