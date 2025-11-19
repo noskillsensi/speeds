@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;500;700&family=Poppins:wght@400;600;700&display=swap');
+
+html { scroll-behavior: smooth; }
+body { 
+    background-color: #050505; 
+    color: #e5e7eb; 
+    overflow-x: hidden;
+}
+
+/* Animações Utilitárias */
+.reveal { 
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); 
+}
+.animate-fade-in { 
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+.pulse-attention { animation: pulse-red 2s infinite; }
+@keyframes pulse-red {
+    0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+}
+
+.spin-loader { animation: spin 1s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #FF0000; }
+
+/* Toggle Switch Customizado */
+.switch-bg:checked { background-color: #FF0000; transform: translateX(100%); border-color: white; }
+.switch-label { transition: background 0.3s; }
+
+/* Custom Notifications Override */
+#notiflix-notify-wrap { pointer-events: none; }
+.notiflix-notify { border-left: 4px solid #FF0000 !important; background: #121212 !important; color: #fff !important; }
