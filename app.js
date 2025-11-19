@@ -1,152 +1,157 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // --- 1. INTERFACE E EFEITOS ---
-    const setupUI = () => {
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth' });
-            });
+    // --- 1. EFEITOS VISUAIS (Scroll Reveal) ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) entry.target.classList.add('animate-fade-in');
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // --- 2. NOTIFICAÇÕES DE PROVA SOCIAL (FAKE) ---
+    if (window.Notiflix) {
+        // Configuração Global
+        Notiflix.Notify.Init({
+            width: '300px',
+            position: 'left-bottom',
+            opacity: 1,
+            borderRadius: '8px',
+            timeout: 4000,
+            cssAnimationStyle: 'from-left',
+            useGoogleFont: true,
+            fontFamily: 'Poppins',
         });
 
-        // Scroll Reveal
-        const observer = new IntersectionObserver((entries) => { 
-            entries.forEach(entry => { 
-                if(entry.isIntersecting) entry.target.classList.add('animate-fade-in');
-            }); 
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Notificações de Prova Social (Brand: Speeds)
-        if (window.Notiflix) { 
-            Notiflix.Notify.Init({
-                width: '300px', position: 'left-bottom', backgroundColor: '#111',
-                textColor: '#fff', borderRadius: '8px', fontFamily: 'Poppins',
-                success: { border: '1px solid #dc2626', notifIconColor: '#dc2626' }
-            });
-
-            setInterval(() => { 
-                const names = ["Mateus K.", "Lucas S.", "João P.", "Enzo G.", "Rafael M."];
-                const randomName = names[Math.floor(Math.random() * names.length)];
-                const msgs = [
-                    `<strong>${randomName}</strong> adquiriu o Speeds Vitalício.`,
-                    `<strong>Nova venda:</strong> Acesso Speeds PRO liberado.`,
-                    `<strong>${randomName}</strong> ativou o Regedit Mobile.`
-                ];
-                Notiflix.Notify.Success(msgs[Math.floor(Math.random() * msgs.length)], { plainText: false });
-            }, 15000);
-        }
-    };
-
-    // --- 2. GAMIFICAÇÃO (Lógica de Vendas) ---
-    const setupGamification = () => {
-        const progressBar = document.getElementById('progress-bar');
-        const progressText = document.getElementById('progress-text');
-        const vitalicioCard = document.getElementById('vitalicio-plan-card');
-        let completed = false;
-
-        const tasks = {
-            t1: { done: false, el: document.getElementById('task-1'), pts: 30 },
-            t2: { done: false, el: document.getElementById('task-2'), pts: 40 },
-            t3: { done: false, el: document.getElementById('task-3'), pts: 30 }
-        };
-
-        const update = () => {
-            if (completed) return;
-            let pts = 0;
-            if(tasks.t1.done) pts += tasks.t1.pts;
-            if(tasks.t2.done) pts += tasks.t2.pts;
-            if(tasks.t3.done) pts += tasks.t3.pts;
-
-            if(progressBar) progressBar.style.width = `${pts}%`;
-            if(progressText) progressText.innerText = `${pts}%`;
-
-            if (pts >= 100 && !completed) {
-                completed = true;
-                setTimeout(() => {
-                    if(window.Notiflix) Notiflix.Notify.Success('<strong>SISTEMA LIBERADO!</strong> Oferta exclusiva desbloqueada.', { timeout: 5000 });
-                    if(vitalicioCard) {
-                        vitalicioCard.classList.add('border-yellow-500', 'shadow-[0_0_50px_rgba(234,179,8,0.4)]');
-                        vitalicioCard.classList.remove('border-red-600');
-                    }
-                    document.getElementById('planos')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 1000);
-            }
-        };
-
-        window.completeTask = (id) => {
-            let key = '';
-            if(id === 'activated') key = 't1';
-            else if(id === 'aim') key = 't2';
-            else if(id === 'opt') key = 't3';
-
-            if (completed || !tasks[key] || tasks[key].done) return;
+        setInterval(() => {
+            const names = ["Pedro H.", "Lucas G.", "João V.", "Matheus S.", "Gabriel O."];
+            const actions = ["acabou de ativar o Speeds PRO", "comprou o acesso Vitalício", "entrou para a elite"];
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomAction = actions[Math.floor(Math.random() * actions.length)];
             
-            tasks[key].done = true;
-            const el = tasks[key].el;
-            if(el) {
-                el.classList.remove('text-gray-500');
-                el.classList.add('text-red-500', 'font-bold', 'bg-red-900/20');
-                el.querySelector('i').classList.replace('far', 'fas');
-                el.querySelector('i').classList.replace('fa-circle', 'fa-check-circle');
-            }
-            update();
-        };
-    };
+            Notiflix.Notify.Success(`<strong>${randomName}</strong> ${randomAction}`);
+        }, 15000); // A cada 15 segundos
+    }
 
-    // --- 3. SIMULADOR DO CELULAR ---
-    const setupSimulator = () => {
-        const btn = document.getElementById('app-main-toggle-btn');
-        const indicators = document.getElementById('status-indicators');
-        const menu = document.getElementById('quick-functions');
-        const glow = document.getElementById('btn-glow');
-        let isOn = false;
+    // --- 3. SIMULADOR DO APP (Lógica Core) ---
+    const mainBtn = document.getElementById('app-main-toggle-btn');
+    const icon = mainBtn ? mainBtn.querySelector('.toggle-icon') : null;
+    const floatingPanel = document.getElementById('app-floating-panel');
+    const statusDivs = document.getElementById('status-indicators');
+    const quickFuncs = document.getElementById('quick-functions');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    
+    let appState = { active: false, progress: 0, tasks: [false, false, false] };
 
-        if(btn) {
-            btn.addEventListener('click', () => {
-                isOn = !isOn;
-                const span = btn.querySelector('span');
-                
-                if (isOn) {
-                    // LIGAR
-                    span.innerText = "ON";
-                    span.classList.replace('text-gray-700', 'text-white');
-                    if(glow) glow.classList.replace('opacity-0', 'opacity-100');
-                    
-                    indicators.classList.remove('opacity-30');
-                    menu.classList.remove('opacity-40', 'pointer-events-none');
-                    
-                    // Popular números falsos
-                    document.querySelector('[data-stat="latency"]').innerText = "18ms";
-                    document.querySelector('[data-stat="fps"]').innerText = "60";
-                    document.querySelector('[data-stat="precision"]').innerText = "+95%";
-                    
-                    window.completeTask('activated');
-                } else {
-                    // DESLIGAR
-                    span.innerText = "OFF";
-                    span.classList.replace('text-white', 'text-gray-700');
-                    if(glow) glow.classList.replace('opacity-100', 'opacity-0');
-                    
-                    indicators.classList.add('opacity-30');
-                    menu.classList.add('opacity-40', 'pointer-events-none');
+    // Função para atualizar progresso
+    const updateProgress = () => {
+        const completedCount = appState.tasks.filter(Boolean).length;
+        const targetPct = Math.round((completedCount / 3) * 100);
+        
+        if (progressBar) progressBar.style.width = `${targetPct}%`;
+        if (progressText) progressText.textContent = `${targetPct}%`;
+
+        // Atualizar check visual na lista de tarefas
+        document.getElementById('task-1').classList.toggle('text-brand-red', appState.tasks[0]);
+        document.getElementById('task-1').classList.toggle('font-bold', appState.tasks[0]);
+        
+        document.getElementById('task-2').classList.toggle('text-brand-red', appState.tasks[1]);
+        
+        document.getElementById('task-3').classList.toggle('text-brand-red', appState.tasks[2]);
+
+        // O grande final
+        if (targetPct === 100) {
+            setTimeout(() => {
+                if(window.Notiflix) Notiflix.Notify.Success('ACESSO LIBERADO! Oferta Exclusiva Desbloqueada.');
+                const vitalicioCard = document.getElementById('vitalicio-plan-card');
+                if(vitalicioCard) {
+                    vitalicioCard.classList.add('ring-4', 'ring-red-600', 'scale-110');
+                    vitalicioCard.scrollIntoView({behavior: 'smooth', block: 'center'});
                 }
-            });
+            }, 1000);
         }
-
-        // Listeners dos Checkboxes
-        document.querySelectorAll('#quick-functions input').forEach(chk => {
-            chk.addEventListener('change', () => {
-                const count = document.querySelectorAll('#quick-functions input:checked').length;
-                if(count >= 1) window.completeTask('aim');
-                if(count >= 2) window.completeTask('opt');
-            });
-        });
     };
 
-    setupUI();
-    setupGamification();
-    setupSimulator();
+    // Ação: Ligar App
+    if(mainBtn) {
+        mainBtn.addEventListener('click', () => {
+            appState.active = !appState.active;
+            
+            if (appState.active) {
+                // Ligou
+                icon.classList.remove('text-gray-600');
+                icon.classList.add('text-green-500', 'drop-shadow-[0_0_10px_rgba(34,197,94,0.8)]');
+                mainBtn.classList.remove('pulse-attention');
+                statusDivs.classList.remove('opacity-30');
+                quickFuncs.classList.remove('opacity-30', 'pointer-events-none');
+                floatingPanel.classList.remove('hidden');
+                
+                // Completar Tarefa 1
+                appState.tasks[0] = true;
+                updateProgress();
+
+                // Simular dados
+                document.querySelector('[data-stat="latency"]').innerHTML = "18<span class='text-xs'>ms</span>";
+                document.querySelector('[data-stat="fps"]').innerHTML = "90";
+                document.querySelector('[data-stat="precision"]').innerHTML = "+95%";
+                document.querySelectorAll('[data-stat]').forEach(el => el.classList.add('text-brand-red'));
+
+            } else {
+                // Desligou
+                icon.classList.add('text-gray-600');
+                icon.classList.remove('text-green-500', 'drop-shadow-[0_0_10px_rgba(34,197,94,0.8)]');
+                statusDivs.classList.add('opacity-30');
+                quickFuncs.classList.add('opacity-30', 'pointer-events-none');
+                floatingPanel.classList.add('hidden');
+            }
+        });
+    }
+
+    // Ação: Clicar nas Funções (Tarefa 2)
+    document.querySelectorAll('input[type="checkbox"]').forEach(chk => {
+        chk.addEventListener('change', () => {
+            if (!appState.active) return;
+            // Se ativar qualquer função, conta como tarefa 2
+            if (!appState.tasks[1]) {
+                appState.tasks[1] = true;
+                updateProgress();
+            }
+        });
+    });
+
+    // Ação: Botão Otimizar (Tarefa 3)
+    const optBtn = document.getElementById('apply-optimization-btn');
+    if(optBtn) {
+        optBtn.addEventListener('click', () => {
+            const originalText = optBtn.innerHTML;
+            optBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> PROCESSANDO...';
+            optBtn.disabled = true;
+            
+            setTimeout(() => {
+                optBtn.innerHTML = '<i class="fas fa-check"></i> SUCESSO!';
+                optBtn.classList.replace('bg-gray-800', 'bg-green-600');
+                optBtn.classList.replace('hover:bg-brand-red', 'hover:bg-green-700');
+                
+                appState.tasks[2] = true;
+                updateProgress();
+
+                setTimeout(() => {
+                    optBtn.innerHTML = originalText;
+                    optBtn.disabled = false;
+                    optBtn.classList.replace('bg-green-600', 'bg-gray-800');
+                    optBtn.classList.replace('hover:bg-green-700', 'hover:bg-brand-red');
+                }, 2000);
+            }, 1500);
+        });
+    }
+
+    // --- 4. RASTREAMENTO (Pixel Safe Mode) ---
+    document.querySelectorAll('.purchase-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Verifica se fbq existe antes de chamar para não quebrar o site em adblockers
+            if (typeof fbq === 'function') {
+                fbq('track', 'InitiateCheckout');
+            }
+        });
+    });
 });
